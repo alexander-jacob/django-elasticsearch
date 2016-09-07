@@ -145,7 +145,8 @@ class EsModelToJsonMixin(object):
             return obj
 
         # Fallback on a dict with id + __unicode__ value of the related model instance.
-        return dict(id=rel.pk, value=unicode(rel))
+        from builtins import str
+        return dict(id=rel.pk, value=u'%s' % str(rel))
 
     def format(self, instance):
         # from a model instance to a dict
